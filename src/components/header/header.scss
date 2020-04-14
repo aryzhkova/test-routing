@@ -1,0 +1,41 @@
+.header {
+  margin-top: .5rem;
+  padding-left: 10px;
+
+  border-bottom: 2px solid rgba(0,0,0,.125);
+  &-container{
+    justify-content: space-between;
+
+  }
+    
+//   ul li {
+//     list-style: none;
+//     margin: 0;
+//     padding: .5rem 1rem;
+//     border-radius: 3px;
+//   }
+  ul li:hover {
+    background-color: #00bc8c;
+    border-radius: .25rem;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+  h3 a {
+    color: #444;
+  }
+  
+  h3 a:hover {
+    color: #00bc8c;
+
+  }
+  
+
+}
+  
+
+  
+
+  
+
+
