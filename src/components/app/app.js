@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../header';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import PrivateRoute from '../private-route';
-import { HomePage, LoginPage, ProfilePage } from '../pages';
+import { HomePage, LoginPage, LogoutPage, ProfilePage } from '../pages';
 
 import './app.scss';
 
@@ -18,9 +18,9 @@ const App = () => {
                     <Route path="/login"
                         component={LoginPage}
                         exact></Route>
-                    {/* <Route path="/profile"
-                        render={() => <h2>Profile Page</h2>}
-                        exact></Route> */}
+                    <Route path="/logout"
+                        component={LogoutPage}
+                        exact></Route>    
                     <PrivateRoute path="/profile" component = {ProfilePage}/> 
                 </Switch>
 

@@ -60,6 +60,12 @@ const updateUserAuthentication = (state, action) => {
                 user: null,
                 error: action.payload
             }
+        case 'LOGOUT':
+            return {
+                authorized: false,
+                user: null,
+                error: null
+            }    
         default:
             return state.userAuthentication
 

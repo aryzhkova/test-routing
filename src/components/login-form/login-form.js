@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { userLoginRequest, userLogged, userLoggedError} from '../../actions';
+import { userLoginRequest, userLogged, userLoggedError } from '../../actions';
 import './login-form.scss';
 import ErrorIndicator from '../error-indicator';
 import { Route, Redirect } from 'react-router-dom';

@@ -39,15 +39,34 @@ const userLoggedError = (error) => {
     }
 }
 
+const userLogout = () => {
+    return {
+        type: 'LOGOUT',
+    }
+}
 
+
+const fetchTestNews = (newsService, dispatch) => () => {
+    dispatch(newsRequested());
+    newsService.getTestNews()
+      .then((data) => dispatch(newsLoaded(data)))
+      .catch((error) => dispatch(newsError(error)));
+  };
+
+const fetchNews = (newsService, dispatch) => () => {
+    dispatch(newsRequested());
+    newsService.getNews()
+      .then((data) => dispatch(newsLoaded(data)))
+      .catch((error) => dispatch(newsError(error)));
+};  
   
 
 
 export {
-    newsRequested,
-    newsLoaded,
-    newsError,
     userLoginRequest,
     userLogged,
     userLoggedError,
+    userLogout,
+    fetchNews,
+    fetchTestNews,
 }

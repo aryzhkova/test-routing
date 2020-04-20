@@ -3,7 +3,8 @@ import Spinner from '../spinner';
 import ErrorIndicator from '../error-indicator';
 import { connect } from 'react-redux';
 import { withNewsService } from '../hoc-helpers';
-import { newsLoaded, newsRequested, newsError} from '../../actions';
+import { fetchTestNews, fetchNews} from '../../actions';
+
 import './item-list.scss';
 
 const ItemList = ({items}) => {
@@ -11,7 +12,7 @@ const ItemList = ({items}) => {
         <ul className="list-group news-list">
             {
                 items.map((item, index)=>{
-                    const { id , date, title, content, author, urlToImage, url} = item;
+                    const { id, date, title, content, author, urlToImage } = item;
                     return(
                         <li key={`${id}_${index}`} className=" list-group-item news-item d-flex">
                             <div className="news-item-left">
@@ -25,8 +26,6 @@ const ItemList = ({items}) => {
                                 </div>
                                 <div className="news-item-content">{content}</div>
                             </div>
-
-        
                         </li>
                     );
                 })
@@ -38,27 +37,9 @@ const ItemList = ({items}) => {
 class ItemListContainer extends Component {
     
     componentDidMount(){
-        const newsService = this.props.newsService;
-        console.log(this.props);
-        //request data
-        this.props.newsRequested();
-        // newsService.getNews()
-        //     .then((data)=>{
-        //         this.props.newsLoaded(data);
-        //     })
-        //     .catch((error)=>{
-        //         this.props.newsError(error)
-        //     })
-        newsService.getTestNews()
-            .then((data)=>{
-                this.props.newsLoaded(data);
-            })
-            .catch((error)=>{
-                this.props.newsError(error)
-            })
-
-        
+        this.props.fetchTestNews();
     } 
+
     render(){
        
         const { news, loading, error } = this.props;
@@ -75,18 +56,16 @@ class ItemListContainer extends Component {
 } 
 
 const mapStateToProps = ({newsList: {news, loading, error}}) => {
-    return {
-        news,
-        loading,
-        error
-    }
+    return { news, loading, error }
 }
 
-const mapDispatchToProps =(dispatch)=>{
+const mapDispatchToProps =(dispatch, {newsService})=>{
     return {
-        newsLoaded: (newNews) => dispatch(newsLoaded(newNews)),
-        newsRequested: ()=> dispatch(newsRequested()),
-        newsError: (error)=> dispatch(newsError(error))
+        fetchTestNews: fetchTestNews(newsService, dispatch),
+        fetchNews: fetchNews(newsService, dispatch),
+        // newsLoaded: (newNews) => dispatch(newsLoaded(newNews)),
+        // newsRequested: ()=> dispatch(newsRequested()),
+        // newsError: (error)=> dispatch(newsError(error))
     }
 }
 
